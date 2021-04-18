@@ -1,8 +1,12 @@
 import InputComponent from "../components/Input"
+import Layout from "../components/Layout"
 
 const IndexPage = () => {
   return (
-    <InputComponent />
+    <div>
+      <Layout />
+      <InputComponent />
+    </div>
   )
 }
 

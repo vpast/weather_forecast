@@ -1,7 +1,8 @@
 const InputComponent = () => {
   return (
-    <div>
-      <input value="Type your city"></input>
+    <div className="input_flex">
+      <p>Your city</p>
+      <input type="text" placeholder="London"></input>
     </div>
   )
 }
