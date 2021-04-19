@@ -1,13 +1,36 @@
-.check {
-  color: red;
+body {
+  background-color: #E8F7FF;
+}
+
+.container {
+  width: 1000px;
+  height: 500px;
 }
 
 .input_flex {
   display: flex;
   align-items: center;
+  padding-top: 70px;
+  padding-left: 30px;
 }
 
 .input_flex p {
-  font-size: 20px;
+  font-size: 19px;
+  font-weight: 600;
   margin-bottom: 0;
+  padding-right: 10px;
+}
+
+.input_flex input {
+  border: #E2E2E2 2px solid;
+  border-radius: 5px;
+  padding-left: 10px;
+  width: 190px;
+  height: 40px;
+}
+
+.layout {
+  margin-top: 200px;
+  background-color: white;
+  border-radius: 20px;
 }

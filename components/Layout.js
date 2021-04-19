@@ -1,6 +1,8 @@
 import Head from "next/head"
+import InputComponent from "./Input"
 
 const Layout = () => {
+  const setCity = (city) => {console.log(city)}
   return (
     <div>
       <Head>
@@ -13,7 +15,7 @@ const Layout = () => {
         <title>Weather</title>
       </Head>
       <main>
-
+        <InputComponent setCity={setCity} />
       </main>
     </div>
   )

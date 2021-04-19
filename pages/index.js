@@ -3,9 +3,8 @@ import Layout from "../components/Layout"
 
 const IndexPage = () => {
   return (
-    <div>
+    <div className="container layout">
       <Layout />
-      <InputComponent />
     </div>
   )
 }
