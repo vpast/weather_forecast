@@ -1,14 +1,25 @@
-const InputComponent = ({setCity}) => {
+import { useState } from "react";
+
+const InputComponent = ({ setCity }) => {
+  const [val, setVal] = useState("");
+
   return (
     <div className="input_flex">
       <p>Your city</p>
-      <input type="text" placeholder="London" onKeyPress={(e) => {
-        if (e.key === 'Enter') {
-          setCity(e.target.value)
-        }
-      }}></input>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          setCity(val);
+        }}
+      >
+        <input
+          value={val}
+          onChange={(e) => setVal(e.target.value)}
+          placeholder="London"
+        />
+      </form>
     </div>
-  )
-}
+  );
+};
 
-export default InputComponent
+export default InputComponent;
