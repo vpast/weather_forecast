@@ -4,12 +4,6 @@ import InputComponent from "./Input";
 
 const Layout = () => {
   const setCity = (city) => {
-    console.log(city);
-    return setCity;
-  };
-  const [data, setData] = useState(null);
-  useEffect(() => {
-    const city = "Moscow";
     fetch(
       `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=0624ffefcf5d5a503a355dc968ab0cf1`
     )
@@ -19,7 +13,12 @@ const Layout = () => {
       .then((data) => {
         setData(data);
       });
-  }, []);
+  };
+  const [data, setData] = useState(null);
+  // useEffect(() => {
+  //   const city = "Moscow";
+
+  // }, []);
   console.log(data);
   return (
     <div>
@@ -34,7 +33,12 @@ const Layout = () => {
       </Head>
       <main>
         <InputComponent setCity={setCity} />
-        {!!data && <div>{data.wind.speed}</div>}
+        {!!data && (
+          <>
+            <p>{data.name}</p>
+            <div>{data.wind.speed}</div>
+          </>
+        )}
       </main>
     </div>
   );
