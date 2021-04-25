@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import Head from "next/head";
 import InputComponent from "./Input";
+import WeatherStat from "./WeatherStat";
+import Image from "next/image"
 
 const Layout = () => {
   const setCity = (city) => {
@@ -15,10 +17,8 @@ const Layout = () => {
       });
   };
   const [data, setData] = useState(null);
-  // useEffect(() => {
-  //   const city = "Moscow";
-
-  // }, []);
+  const today = new Date() 
+  const currentDateTime = today.getHours() + ':' + today.getMinutes() + ' ' + today.toDateString()
   console.log(data);
   return (
     <div>
@@ -33,10 +33,11 @@ const Layout = () => {
       </Head>
       <main>
         <InputComponent setCity={setCity} />
+        <WeatherStat />
         {!!data && (
           <>
-            <p>{data.name}</p>
-            <div>{data.wind.speed}</div>
+            <p className="date">{currentDateTime}</p>
+            <img src={`http://openweathermap.org/img/wn/${data.weather[0].icon}@4x.png`} className="img"></img>
           </>
         )}
       </main>
