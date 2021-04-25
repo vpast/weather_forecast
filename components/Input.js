@@ -4,7 +4,7 @@ const InputComponent = ({ setCity }) => {
   const [val, setVal] = useState("");
 
   return (
-    <div className="input_flex">
+    <div className="inputFlex">
       <p className="check">Your city</p>
       <form
         onSubmit={(e) => {

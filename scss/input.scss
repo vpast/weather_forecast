@@ -1,18 +1,18 @@
-.input_flex {
+.inputFlex {
   display: flex;
   align-items: center;
   padding-top: 70px;
-  padding-left: 30px;
+  padding-left: 70px;
 }
 
-.input_flex p {
+.inputFlex p {
   font-size: 19px;
   font-weight: 600;
   margin-bottom: 0;
   padding-right: 10px;
 }
 
-.input_flex input {
+.inputFlex input {
   border: #E2E2E2 2px solid;
   border-radius: 5px;
   padding-left: 10px;

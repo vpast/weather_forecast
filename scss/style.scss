@@ -1,18 +1,19 @@
 @import '../node_modules/bootstrap/scss/bootstrap.scss';
-@import '../scss/input.scss';
-@import '../scss/layout.scss';
+@import './input.scss';
+@import './layout.scss';
+@import './weather.scss';
 
 body {
   background-color: #E8F7FF;
 }
 
 .container {
-  width: 1000px;
-  height: 500px;
+  width: 1200px;
+  height: 650px;
 }
 
 .date {
-  padding-left: 70px;
+  padding-left: 120px;
   padding-top: 50px;
   font-size: 20px;
   color: #949494;

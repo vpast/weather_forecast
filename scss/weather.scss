@@ -1,0 +1,53 @@
+.weatherStat {
+  display: flex;
+}
+
+.weatherStatFlex {
+  display: flex;
+  align-items: center;
+}
+
+.weatherStatFlex p:nth-child(2) {
+  padding-bottom: 60px;
+  padding-left: 10px;
+}
+
+.weatherTemp {
+  font-size: 80px;
+  font-weight: bold;
+}
+
+.weatherCel {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.weatherDescription {
+  padding-left: 100px;
+  padding-bottom: 20px;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.weatherHw {
+  width: 360px;
+  display: flex;
+  justify-content: space-between;
+  padding-left: 80px;
+}
+
+.weatherHwStat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.weatherHwStatFont {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.weatherHwTitleFont {
+  font-size: 25px;
+  color: #949494;
+}
