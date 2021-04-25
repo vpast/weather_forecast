@@ -5,7 +5,7 @@ const InputComponent = ({ setCity }) => {
 
   return (
     <div className="input_flex">
-      <p>Your city</p>
+      <p className="check">Your city</p>
       <form
         onSubmit={(e) => {
           e.preventDefault();
