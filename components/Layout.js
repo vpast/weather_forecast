@@ -2,9 +2,11 @@ import { useState, useEffect } from "react";
 import Head from "next/head";
 import InputComponent from "./Input";
 import WeatherStat from "./WeatherStat";
-import Image from "next/image"
+import Image from "next/image";
 
 const Layout = () => {
+  const [data, setData] = useState(null);
+  const [currentDateTime, setCurrentDateTime] = useState(null);
   const setCity = (city) => {
     fetch(
       `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=0624ffefcf5d5a503a355dc968ab0cf1`
@@ -16,9 +18,23 @@ const Layout = () => {
         setData(data);
       });
   };
-  const [data, setData] = useState(null);
-  const today = new Date() 
-  const currentDateTime = today.getHours() + ':' + today.getMinutes() + ' ' + today.toDateString()
+  useEffect(() => {
+    if (!data) {
+      return;
+    }
+    const today = new Date();
+    const cityOffset = data.timezone / 60;
+    today.setTime(
+      today.getTime() + (today.getTimezoneOffset() + cityOffset) * 60000
+    );
+    const currentDateTimeNew =
+      today.getHours() +
+      ":" +
+      (today.getMinutes() + "").padStart(2, "0") +
+      " " +
+      today.toDateString();
+    setCurrentDateTime(currentDateTimeNew);
+  }, [data]);
   console.log(data);
   return (
     <div>
@@ -33,30 +49,7 @@ const Layout = () => {
       </Head>
       <main>
         <InputComponent setCity={setCity} />
-        <WeatherStat />
-        {!!data && (
-          <>
-            <p className="date">{currentDateTime}</p>
-            <div className="weatherStat">
-              <img src={`http://openweathermap.org/img/wn/${data.weather[0].icon}@4x.png`} className="img"></img>
-              <div className="weatherStatFlex">
-                <p className="weatherTemp">{data.main.temp}</p>
-                <p className="weatherCel">&deg;C</p>
-              </div>
-            </div>
-            <p className="weatherDescription">{data.weather[0].description}</p>
-            <div className="weatherHw">
-              <div className="weatherHwStat">
-                <p className="weatherHwTitleFont">Humidity</p>
-                <p className="weatherHwStatFont">{data.main.humidity} %</p>
-              </div>
-              <div className="weatherHwStat">
-                <p className="weatherHwTitleFont">Wind Speed</p>
-                <p className="weatherHwStatFont">{data.wind.speed} m/s</p>
-              </div>
-            </div>
-          </>
-        )}
+        {!!data && <WeatherStat data={data} currentDateTime={currentDateTime} />}
       </main>
     </div>
   );
