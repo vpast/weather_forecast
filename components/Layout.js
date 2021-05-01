@@ -3,6 +3,7 @@ import Head from "next/head";
 import InputComponent from "./Input";
 import WeatherStat from "./WeatherStat";
 import Image from "next/image";
+import WeatherChart from "./WeatherChart";
 
 const Layout = () => {
   const [data, setData] = useState(null);
