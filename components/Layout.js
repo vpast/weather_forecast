@@ -1,9 +1,12 @@
+import dynamic from "next/dynamic";
 import { useState, useEffect } from "react";
 import Head from "next/head";
 import InputComponent from "./Input";
 import WeatherStat from "./WeatherStat";
 import Image from "next/image";
 import WeatherChart from "./WeatherChart";
+
+// const WeatherChart = dynamic(() => import("./WeatherChart"), { ssr: false });
 
 const Layout = () => {
   const [data, setData] = useState(null);
@@ -50,10 +53,15 @@ const Layout = () => {
       </Head>
       <main>
         <InputComponent setCity={setCity} />
-        {!!data && <WeatherStat data={data} currentDateTime={currentDateTime} />}
-        
-        <WeatherChart />
-        <canvas id="myChart" width="400" height="400"></canvas>
+        {!!data && (
+          <WeatherStat data={data} currentDateTime={currentDateTime} />
+        )}
+        {!!data && (
+          <>
+            <WeatherChart />
+            <canvas id="myChart" width="400" height="400"></canvas>
+          </>
+        )}
       </main>
     </div>
   );
