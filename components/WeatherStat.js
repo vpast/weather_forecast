@@ -4,7 +4,7 @@ const WeatherStat = ({ data, currentDateTime }) => {
       <p className="date">{currentDateTime}</p>
       <div className="weatherStat">
         <img
-          src={`http://openweathermap.org/img/wn/${data.weather[0].icon}@4x.png`}
+          src={`http://openweathermap.org/img/wn/${data.list[0].weather[0].icon}@4x.png`}
           className="img"
         ></img>
         <div className="weatherStatFlex">
@@ -12,7 +12,7 @@ const WeatherStat = ({ data, currentDateTime }) => {
           <p className="weatherCel">&deg;C</p>
         </div>
       </div>
-      <p className="weatherDescription">{data.weather[0].description}</p>
+      <p className="weatherDescription">{data.list.weather[0].description}</p>
       <div className="weatherHw">
         <div className="weatherHwStat">
           <p className="weatherHwTitleFont">Humidity</p>

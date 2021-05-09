@@ -13,7 +13,7 @@ const WeatherChart = () => {
         fill: true,
         borderColor: 'rgb(75, 192, 192)',
         backgroundColor: 'rgb(189, 255, 255)',
-        tension: 0.1
+        tension: 0.2
       }],
     },
     options: {

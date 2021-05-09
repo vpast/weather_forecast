@@ -13,15 +13,26 @@ const Layout = () => {
   const [currentDateTime, setCurrentDateTime] = useState(null);
   const setCity = (city) => {
     fetch(
-      `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=0624ffefcf5d5a503a355dc968ab0cf1`
+      `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&cnt=4&appid=0624ffefcf5d5a503a355dc968ab0cf1`
     )
       .then((response) => {
         return response.json();
       })
       .then((data) => {
         setData(data);
-      });
+      })
+      .then(() => {
+        fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${data.coord.lat}&lon=${data.coord.lon}&exclude=daily&appid=0624ffefcf5d5a503a355dc968ab0cf1`)
+        .then((response) => {
+          return response.json();
+        })
+        .then((data) => {
+          setData(data);
+        })
+      })
   };
+  console.log(data)
+
   useEffect(() => {
     if (!data) {
       return;
@@ -39,7 +50,7 @@ const Layout = () => {
       today.toDateString();
     setCurrentDateTime(currentDateTimeNew);
   }, [data]);
-  console.log(data);
+  // console.log(data);
   return (
     <div>
       <Head>
@@ -55,15 +66,15 @@ const Layout = () => {
         <div className="wrapper">
           <div>
             <InputComponent setCity={setCity} />
-            {!!data && (
+            {/* {!!data && (
               <WeatherStat data={data} currentDateTime={currentDateTime} />
-            )}
+            )} */}
           </div>
-          {!!data && (
+          {/* {!!data && (
             <div className="chartWrapper">
               <WeatherChart />
             </div>
-          )}
+          )} */}
           </div>
       </main>
     </div>
