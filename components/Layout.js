@@ -52,16 +52,19 @@ const Layout = () => {
         <title>Weather</title>
       </Head>
       <main>
-        <InputComponent setCity={setCity} />
-        {!!data && (
-          <WeatherStat data={data} currentDateTime={currentDateTime} />
-        )}
-        {!!data && (
-          <>
-            <WeatherChart />
-            <canvas id="myChart" width="400" height="400"></canvas>
-          </>
-        )}
+        <div className="wrapper">
+          <div>
+            <InputComponent setCity={setCity} />
+            {!!data && (
+              <WeatherStat data={data} currentDateTime={currentDateTime} />
+            )}
+          </div>
+          {!!data && (
+            <div className="chartWrapper">
+              <WeatherChart />
+            </div>
+          )}
+          </div>
       </main>
     </div>
   );
