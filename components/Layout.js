@@ -20,8 +20,6 @@ const Layout = () => {
       })
       .then((data) => {
         setData(data);
-      })
-      .then(() => {
         fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${data.coord.lat}&lon=${data.coord.lon}&exclude=daily&appid=0624ffefcf5d5a503a355dc968ab0cf1`)
         .then((response) => {
           return response.json();
