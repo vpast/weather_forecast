@@ -19,8 +19,7 @@ const Layout = () => {
         return response.json();
       })
       .then((data) => {
-        setData(data);
-        fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${data.coord.lat}&lon=${data.coord.lon}&exclude=daily&appid=0624ffefcf5d5a503a355dc968ab0cf1`)
+        fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${data.coord.lat}&lon=${data.coord.lon}&units=metric&exclude=hourly,minutely&appid=0624ffefcf5d5a503a355dc968ab0cf1`)
         .then((response) => {
           return response.json();
         })
@@ -36,7 +35,7 @@ const Layout = () => {
       return;
     }
     const today = new Date();
-    const cityOffset = data.timezone / 60;
+    const cityOffset = data.timezone_offset / 60;
     today.setTime(
       today.getTime() + (today.getTimezoneOffset() + cityOffset) * 60000
     );
@@ -64,15 +63,15 @@ const Layout = () => {
         <div className="wrapper">
           <div>
             <InputComponent setCity={setCity} />
-            {/* {!!data && (
+            {!!data && (
               <WeatherStat data={data} currentDateTime={currentDateTime} />
-            )} */}
+            )}
           </div>
-          {/* {!!data && (
+          {!!data && (
             <div className="chartWrapper">
-              <WeatherChart />
+              <WeatherChart data={data} />
             </div>
-          )} */}
+          )}
           </div>
       </main>
     </div>

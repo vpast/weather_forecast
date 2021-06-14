@@ -1,6 +1,6 @@
 import Chart from 'chart.js/auto';
 
-const WeatherChart = () => {
+const WeatherChart = ({data}) => {
   const ctx = document.getElementById("weatherChart");
   const myChart = new Chart(ctx, {
     type: "line",
@@ -8,7 +8,7 @@ const WeatherChart = () => {
       labels: ["1", "2", "3", "4"],
       datasets: [{
         label: "Temperature",
-        data: [8, 2, 5, 3],
+        data: [data.daily[0].temp.day, data.daily[1].temp.day, data.daily[2].temp.day, data.daily[3].temp.day],
         cubicInterpolationMode: 'monotone',
         fill: true,
         borderColor: 'rgb(75, 192, 192)',
@@ -19,7 +19,7 @@ const WeatherChart = () => {
     options: {
       responsive: true,
       y: {
-        max: 30,
+        max: 40,
       },
     },
   });
