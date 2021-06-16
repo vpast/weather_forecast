@@ -1,4 +1,7 @@
 const WeatherCard = ({data}) => {
+  const date = new Date()
+  const today = (date.getDate() + "").padStart(2, "0")
+  const month = (date.getMonth() + "").padStart(2, "0")
 return(
   <>
     <div className="cardFlex">
@@ -15,7 +18,7 @@ return(
       </div>
 
       <div className="cardBorder">
-        <p className="cardFonts">Today</p>
+        <p className="cardFonts">{today}.{month}</p>
         <div className="cardImg">
           <img
             src={`http://openweathermap.org/img/wn/${data.current.weather[0].icon}@2x.png`}
@@ -27,7 +30,7 @@ return(
       </div>
 
       <div className="cardBorder">
-        <p className="cardFonts">Today</p>
+        <p className="cardFonts">{today}.{month}</p>
         <div className="cardImg">
           <img
             src={`http://openweathermap.org/img/wn/${data.current.weather[0].icon}@2x.png`}
@@ -37,9 +40,9 @@ return(
         <p className="cardFonts cardFontsColor">Humidity</p>
         <p className="cardFonts">{data.current.humidity} %</p>
       </div>
-      
+
       <div className="cardBorder">
-        <p className="cardFonts">Today</p>
+        <p className="cardFonts">{today}.{month}</p>
         <div className="cardImg">
           <img
             src={`http://openweathermap.org/img/wn/${data.current.weather[0].icon}@2x.png`}
