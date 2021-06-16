@@ -5,6 +5,7 @@ import InputComponent from "./Input";
 import WeatherStat from "./WeatherStat";
 import Image from "next/image";
 import WeatherChart from "./WeatherChart";
+import WeatherCard from "./WeatherCard";
 
 // const WeatherChart = dynamic(() => import("./WeatherChart"), { ssr: false });
 
@@ -67,12 +68,19 @@ const Layout = () => {
               <WeatherStat data={data} currentDateTime={currentDateTime} />
             )}
           </div>
-          {!!data && (
-            <div className="chartWrapper">
-              <WeatherChart data={data} />
-            </div>
-          )}
+          <div className="cardBlockFlex">
+            {!!data && (
+              <div className="chartWrapper">
+                <WeatherChart data={data} />
+              </div>
+            )}
+            {!!data && (
+              <div className="cards">
+                <WeatherCard data={data} />
+              </div>
+            )}
           </div>
+        </div>
       </main>
     </div>
   );

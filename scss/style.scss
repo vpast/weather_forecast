@@ -2,6 +2,7 @@
 @import './input.scss';
 @import './layout.scss';
 @import './weather.scss';
+@import './card.scss';
 
 body {
   background-color: #E8F7FF;
@@ -9,7 +10,7 @@ body {
 
 .container {
   width: 1400px;
-  height: 650px;
+  height: 670px;
 }
 
 .date {
@@ -26,7 +27,7 @@ body {
 .chartWrapper {
   width: 800px;
   height: 400px;
-  padding-top: 100px;
+  padding-top: 80px;
   padding-left: 40px;
 }
 
