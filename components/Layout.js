@@ -12,6 +12,7 @@ import WeatherCard from "./WeatherCard";
 const Layout = () => {
   const [data, setData] = useState(null);
   const [currentDateTime, setCurrentDateTime] = useState(null);
+  const [currentDate, setCurrentDate] = useState(new Date());
   const setCity = (city) => {
     fetch(
       `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&cnt=4&appid=0624ffefcf5d5a503a355dc968ab0cf1`
@@ -47,6 +48,7 @@ const Layout = () => {
       " " +
       today.toDateString();
     setCurrentDateTime(currentDateTimeNew);
+    setCurrentDate(today);
   }, [data]);
   // console.log(data);
   return (
@@ -76,7 +78,7 @@ const Layout = () => {
             )}
             {!!data && (
               <div className="cards">
-                <WeatherCard data={data} />
+                <WeatherCard data={data} currentDate={currentDate} />
               </div>
             )}
           </div>
