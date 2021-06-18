@@ -15,7 +15,7 @@ const WeatherChart = ({data}) => {
         labels: ["1", "2", "3", "4"],
         datasets: [{
           label: "Temperature",
-          data: [data.daily[0].temp.day, data.daily[1].temp.day, data.daily[2].temp.day, data.daily[3].temp.day],
+          data: [Math.round(data.daily[0].temp.day), Math.round(data.daily[1].temp.day), Math.round(data.daily[2].temp.day), Math.round(data.daily[3].temp.day)],
           cubicInterpolationMode: 'monotone',
           fill: true,
           borderColor: 'rgb(75, 192, 192)',

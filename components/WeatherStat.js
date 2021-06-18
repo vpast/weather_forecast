@@ -1,4 +1,5 @@
 const WeatherStat = ({ data, currentDateTime }) => {
+  const roundvalue = Math.round(data.current.temp);
   return (
     <>
       <p className="date">{currentDateTime}</p>
@@ -8,7 +9,7 @@ const WeatherStat = ({ data, currentDateTime }) => {
           className="img"
         ></img>
         <div className="weatherStatFlex">
-          <p className="weatherTemp">{data.current.temp}</p>
+          <p className="weatherTemp">{roundvalue}</p>
           <p className="weatherCel">&deg;C</p>
         </div>
       </div>
