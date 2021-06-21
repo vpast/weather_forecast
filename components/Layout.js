@@ -6,6 +6,8 @@ import WeatherStat from "./WeatherStat";
 import Image from "next/image";
 import WeatherChart from "./WeatherChart";
 import WeatherCard from "./WeatherCard";
+import ErrorInput from "./ErrorInput";
+import Check from "./Check"
 
 // const WeatherChart = dynamic(() => import("./WeatherChart"), { ssr: false });
 
@@ -63,26 +65,29 @@ const Layout = () => {
         <title>Weather</title>
       </Head>
       <main>
-        <div className="wrapper">
-          <div>
-            <InputComponent setCity={setCity} />
-            {!!data && (
-              <WeatherStat data={data} currentDateTime={currentDateTime} />
-            )}
+        <InputComponent setCity={setCity} />
+        {(data == null && !data)
+          ? <ErrorInput  data={data} />
+          : <div className="wrapper">
+            <div>
+              {!!data && (
+                <WeatherStat data={data} currentDateTime={currentDateTime} />
+              )}
+            </div>
+            <div className="cardBlockFlex">
+              {!!data && (
+                <div className="chartWrapper">
+                  <WeatherChart data={data} />
+                </div>
+              )}
+              {!!data && (
+                <div className="cards">
+                  <WeatherCard data={data} currentDate={currentDate} />
+                </div>
+              )}
+            </div>
           </div>
-          <div className="cardBlockFlex">
-            {!!data && (
-              <div className="chartWrapper">
-                <WeatherChart data={data} />
-              </div>
-            )}
-            {!!data && (
-              <div className="cards">
-                <WeatherCard data={data} currentDate={currentDate} />
-              </div>
-            )}
-          </div>
-        </div>
+        }
       </main>
     </div>
   );
