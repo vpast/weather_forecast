@@ -1,12 +1,13 @@
 const ErrorInput = (data) => {
-  return(
+  return (
     <>
-      {(data.data == null)
-        ? <div></div>
-        : <p>Wrong input, try another please.</p>
-      }
+      {data.data == null ? (
+        <p>lol</p>
+      ) : (
+        <p>Wrong input, try another please.</p>
+      )}
     </>
-  )
-}
+  );
+};
 
-export default ErrorInput
+export default ErrorInput;

@@ -7,7 +7,6 @@ import Image from "next/image";
 import WeatherChart from "./WeatherChart";
 import WeatherCard from "./WeatherCard";
 import ErrorInput from "./ErrorInput";
-import Check from "./Check"
 
 // const WeatherChart = dynamic(() => import("./WeatherChart"), { ssr: false });
 
@@ -23,16 +22,23 @@ const Layout = () => {
         return response.json();
       })
       .then((data) => {
-        fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${data.coord.lat}&lon=${data.coord.lon}&units=metric&exclude=hourly,minutely&appid=0624ffefcf5d5a503a355dc968ab0cf1`)
-        .then((response) => {
-          return response.json();
-        })
-        .then((data) => {
-          setData(data);
-        })
-      })
+        if (data.coord != undefined) {
+          fetch(
+            `https://api.openweathermap.org/data/2.5/onecall?lat=${data.coord.lat}&lon=${data.coord.lon}&units=metric&exclude=hourly,minutely&appid=0624ffefcf5d5a503a355dc968ab0cf1`
+          )
+            .then((response) => {
+              return response.json();
+            })
+            .then((data) => {
+              setData(data);
+            });
+        } else {
+          <ErrorInput />
+          return;
+        }
+      });
   };
-  console.log(data)
+  console.log(data);
 
   useEffect(() => {
     if (!data) {
@@ -66,9 +72,10 @@ const Layout = () => {
       </Head>
       <main>
         <InputComponent setCity={setCity} />
-        {(data == null && !data)
-          ? <ErrorInput  data={data} />
-          : <div className="wrapper">
+        {data == null && !data ? (
+          <ErrorInput data={data} />
+        ) : (
+          <div className="wrapper">
             <div>
               {!!data && (
                 <WeatherStat data={data} currentDateTime={currentDateTime} />
@@ -87,7 +94,7 @@ const Layout = () => {
               )}
             </div>
           </div>
-        }
+        )}
       </main>
     </div>
   );
