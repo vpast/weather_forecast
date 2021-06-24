@@ -1,12 +1,9 @@
-const ErrorInput = (data) => {
+const ErrorInput = (props) => {
+  const {error = "Something wrong."} = props
   return (
-    <>
-      {data.data == null ? (
-        <p>lol</p>
-      ) : (
-        <p>Wrong input, try another please.</p>
-      )}
-    </>
+    <div className="error">
+      {error}
+    </div>
   );
 };
 

@@ -14,7 +14,9 @@ const Layout = () => {
   const [data, setData] = useState(null);
   const [currentDateTime, setCurrentDateTime] = useState(null);
   const [currentDate, setCurrentDate] = useState(new Date());
+  const [error, setError] = useState("");
   const setCity = (city) => {
+    setError("");
     fetch(
       `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&cnt=4&appid=0624ffefcf5d5a503a355dc968ab0cf1`
     )
@@ -33,8 +35,7 @@ const Layout = () => {
               setData(data);
             });
         } else {
-          <ErrorInput />
-          return;
+          setError("Wrong input, try another please.");
         }
       });
   };
@@ -71,30 +72,25 @@ const Layout = () => {
         <title>Weather</title>
       </Head>
       <main>
-        <InputComponent setCity={setCity} />
-        {data == null && !data ? (
-          <ErrorInput data={data} />
-        ) : (
           <div className="wrapper">
             <div>
+              <InputComponent setCity={setCity} />
+              {!!error && <ErrorInput error={error} />}
               {!!data && (
                 <WeatherStat data={data} currentDateTime={currentDateTime} />
               )}
             </div>
-            <div className="cardBlockFlex">
-              {!!data && (
+            {!!data && (
+              <div className="cardBlockFlex">
                 <div className="chartWrapper">
                   <WeatherChart data={data} />
                 </div>
-              )}
-              {!!data && (
                 <div className="cards">
                   <WeatherCard data={data} currentDate={currentDate} />
                 </div>
-              )}
-            </div>
+              </div>
+            )}
           </div>
-        )}
       </main>
     </div>
   );
