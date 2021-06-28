@@ -56,7 +56,7 @@ const WeatherCard = ({ data, currentDate, activeDay, setActiveDay}) => {
   return (
     <>
       <div className="cardFlex">
-        {days.map((day, index) => <WeatherItem key={index} {...day} isActive={index === activeDay} onClick={() => (setActiveDay(index))}/>)}
+        {days.map((day, index) => <WeatherItem key={index} {...day} isActive={index === activeDay} onClick={() => setActiveDay(index)}/>)}
       </div>
     </>
   );

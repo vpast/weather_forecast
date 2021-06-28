@@ -16,7 +16,6 @@ const Layout = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [error, setError] = useState("");
   const [activeDay, setActiveDay] = useState(null);
-  const [color, setColor] = useState(null);
   const setCity = (city) => {
     setError("");
     fetch(
@@ -88,7 +87,7 @@ const Layout = () => {
                   <WeatherChart data={data} activeDay={activeDay} />
                 </div>
                 <div className="cards">
-                  <WeatherCard data={data} currentDate={currentDate} activeDay={activeDay} setActiveDay={setActiveDay} color={color} setColor={setColor} />
+                  <WeatherCard data={data} currentDate={currentDate} activeDay={activeDay} setActiveDay={setActiveDay}/>
                 </div>
               </div>
             )}
