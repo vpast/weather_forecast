@@ -22,20 +22,20 @@ const getNextDate = (date, step = 1) => {
   return nextDay;
 };
 
-const WeatherItem = ({ itemTitle, src, humidity }) => {
+const WeatherItem = ({ itemTitle, src, humidity, isActive, onClick, color, setColor}) => {
   return (
-    <div className="cardBorder">
+    <div className="cardBorder cardBorderClear" onClick={() => onClick()}>
       <p className="cardFonts">{itemTitle}</p>
       <div className="cardImg">
         <img src={src} className="img" />
       </div>
       <p className="cardFonts cardFontsColor">Humidity</p>
-      <p className="cardFonts">{humidity} %</p>
+      <p className="cardFonts">{humidity} % {isActive && '(active)'}</p>
     </div>
   );
 };
 
-const WeatherCard = ({ data, currentDate }) => {
+const WeatherCard = ({ data, currentDate, activeDay, setActiveDay}) => {
   const days = [
     {
       itemTitle: "Today",
@@ -56,7 +56,7 @@ const WeatherCard = ({ data, currentDate }) => {
   return (
     <>
       <div className="cardFlex">
-        {days.map((day, index) => <WeatherItem key={index} {...day} />)}
+        {days.map((day, index) => <WeatherItem key={index} {...day} isActive={index === activeDay} onClick={() => (setActiveDay(index))}/>)}
       </div>
     </>
   );

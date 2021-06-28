@@ -1,10 +1,12 @@
 .cardBlockFlex {
   display: flex;
   flex-direction: column;
+  padding-left: 40px;
 }
 
 .cards {
-  margin-top: 80px;
+  margin-top: 40px;
+  padding-left: 30px;
 }
 
 .cardFonts {
@@ -48,7 +50,11 @@
   border-radius: 5px;
 }
 
-.cardBorder:active {
+.cardBorderClear {
+  background-color: white;
+}
+
+.cardBorderActive {
   background-color: rgb(84, 149, 255);
   border-radius: 5px;
 }

@@ -15,6 +15,8 @@ const Layout = () => {
   const [currentDateTime, setCurrentDateTime] = useState(null);
   const [currentDate, setCurrentDate] = useState(new Date());
   const [error, setError] = useState("");
+  const [activeDay, setActiveDay] = useState(null);
+  const [color, setColor] = useState(null);
   const setCity = (city) => {
     setError("");
     fetch(
@@ -83,10 +85,10 @@ const Layout = () => {
             {!!data && (
               <div className="cardBlockFlex">
                 <div className="chartWrapper">
-                  <WeatherChart data={data} />
+                  <WeatherChart data={data} activeDay={activeDay} />
                 </div>
                 <div className="cards">
-                  <WeatherCard data={data} currentDate={currentDate} />
+                  <WeatherCard data={data} currentDate={currentDate} activeDay={activeDay} setActiveDay={setActiveDay} color={color} setColor={setColor} />
                 </div>
               </div>
             )}
