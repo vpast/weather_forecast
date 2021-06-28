@@ -22,9 +22,9 @@ const getNextDate = (date, step = 1) => {
   return nextDay;
 };
 
-const WeatherItem = ({ itemTitle, src, humidity, isActive, onClick, color, setColor}) => {
+const WeatherItem = ({ itemTitle, src, humidity, isActive, onClick}) => {
   return (
-    <div className="cardBorder cardBorderClear" onClick={() => onClick()}>
+    <div className={`cardBorder ${isActive && 'cardBorderActive'}`} onClick={() => onClick()}>
       <p className="cardFonts">{itemTitle}</p>
       <div className="cardImg">
         <img src={src} className="img" />
