@@ -15,7 +15,7 @@ const Layout = () => {
   const [currentDateTime, setCurrentDateTime] = useState(null);
   const [currentDate, setCurrentDate] = useState(new Date());
   const [error, setError] = useState("");
-  const [activeDay, setActiveDay] = useState(null);
+  const [activeDay, setActiveDay] = useState(0);
   const setCity = (city) => {
     setError("");
     fetch(

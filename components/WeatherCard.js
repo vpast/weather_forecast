@@ -30,7 +30,7 @@ const WeatherItem = ({ itemTitle, src, humidity, isActive, onClick}) => {
         <img src={src} className="img" />
       </div>
       <p className="cardFonts cardFontsColor">Humidity</p>
-      <p className="cardFonts">{humidity} % {isActive && '(active)'}</p>
+      <p className="cardFonts">{humidity} % {isActive}</p>
     </div>
   );
 };

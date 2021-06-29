@@ -76,7 +76,7 @@ const WeatherChart = ({ data, activeDay }) => {
       },
     ];
     myChart.update();
-  }, [activeDay]);
+  }, [activeDay, data]);
 
   return <canvas ref={chartRef}></canvas>;
 };
