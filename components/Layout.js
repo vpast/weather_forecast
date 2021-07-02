@@ -74,7 +74,7 @@ const Layout = () => {
       </Head>
       <main>
           <div className="wrapper">
-            <div>
+            <div className="inputWrapper">
               <InputComponent setCity={setCity} />
               {!!error && <ErrorInput error={error} />}
               {!!data && (

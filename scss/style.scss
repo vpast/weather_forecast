@@ -9,7 +9,7 @@ body {
 }
 
 .container {
-  width: 1400px;
+  max-width: 1400px;
   height: 670px;
 }
 
@@ -38,4 +38,29 @@ body {
 .error {
   padding-left: 72px;
   padding-top: 20px;
+}
+
+
+@media(max-width: 1400px) {
+  .container {
+    height: 1250px;
+  }
+
+  .wrapper {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+// @media(max-width: 990px) {
+//   .container {
+//     width: ;
+//   }
+// }
+
+@media(max-width: 768px) {
+  .container {
+    width: 400px;
+    height: 620px;
+  }
 }
