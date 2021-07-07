@@ -1,14 +1,11 @@
-import dynamic from "next/dynamic";
 import { useState, useEffect } from "react";
 import Head from "next/head";
 import InputComponent from "./Input";
 import WeatherStat from "./WeatherStat";
-import Image from "next/image";
 import WeatherChart from "./WeatherChart";
 import WeatherCard from "./WeatherCard";
 import ErrorInput from "./ErrorInput";
 
-// const WeatherChart = dynamic(() => import("./WeatherChart"), { ssr: false });
 
 const Layout = () => {
   const [data, setData] = useState(null);
@@ -60,7 +57,7 @@ const Layout = () => {
     setCurrentDateTime(currentDateTimeNew);
     setCurrentDate(today);
   }, [data]);
-  // console.log(data);
+
   return (
     <div>
       <Head>
