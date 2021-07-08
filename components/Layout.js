@@ -6,8 +6,6 @@ import WeatherChart from "./WeatherChart";
 import WeatherCard from "./WeatherCard";
 import ErrorInput from "./ErrorInput";
 
-const token = process.env.NEXT_PUBLIC_WEATHER_API
-
 const Layout = () => {
   const [data, setData] = useState(null);
   const [currentDateTime, setCurrentDateTime] = useState(null);
@@ -17,7 +15,7 @@ const Layout = () => {
   const setCity = (city) => {
     setError("");
     fetch(
-      `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&cnt=4&appid=${token}`
+      `/api/weather?city=${city}`
     )
       .then((response) => {
         return response.json();
@@ -25,7 +23,7 @@ const Layout = () => {
       .then((data) => {
         if (data.coord != undefined) {
           fetch(
-            `https://api.openweathermap.org/data/2.5/onecall?lat=${data.coord.lat}&lon=${data.coord.lon}&units=metric&exclude=hourly,minutely&appid=${token}`
+            `/api/onecall?lat=${data.coord.lat}&lon=${data.coord.lon}`
           )
             .then((response) => {
               return response.json();
