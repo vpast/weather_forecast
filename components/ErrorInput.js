@@ -1,7 +1,7 @@
 const ErrorInput = (props) => {
   const {error = "Something wrong."} = props
   return (
-    <div className="error">
+    <div className="weatherError">
       {error}
     </div>
   );

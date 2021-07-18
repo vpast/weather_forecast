@@ -69,7 +69,7 @@ const Layout = () => {
         <title>Weather</title>
       </Head>
       <main>
-          <div className="wrapper">
+          <div className="mainWrapper">
             <div className="inputWrapper">
               <InputComponent setCity={setCity} />
               {!!error && <ErrorInput error={error} />}

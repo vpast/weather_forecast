@@ -2,11 +2,11 @@ const WeatherStat = ({ data, currentDateTime }) => {
   const roundvalue = Math.round(data.current.temp);
   return (
     <>
-      <p className="date">{currentDateTime}</p>
+      <p className="weatherDate">{currentDateTime}</p>
       <div className="weatherStat">
         <img
           src={`http://openweathermap.org/img/wn/${data.current.weather[0].icon}@4x.png`}
-          className="img"
+          className="weatherImg"
         ></img>
         <div className="weatherStatFlex">
           <p className="weatherTemp">{roundvalue}</p>

@@ -8,19 +8,25 @@ body {
   background-color: #E8F7FF;
 }
 
-.container {
-  max-width: 1400px;
+.center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.weatherContainer {
+  width: 1400px;
   height: 670px;
 }
 
-.date {
+.weatherDate {
   padding-left: 120px;
   padding-top: 50px;
   font-size: 20px;
   color: #949494;
 }
 
-.img {
+.weatherImg {
   padding-left: 20px;
 }
 
@@ -31,29 +37,29 @@ body {
   padding-left: 40px;
 }
 
-.wrapper {
+.mainWrapper {
   display: flex;
 }
 
-.error {
+.weatherError {
   padding-left: 72px;
   padding-top: 20px;
 }
 
 
 @media(max-width: 1400px) {
-  .container {
+  .weatherContainer {
     height: 1250px;
   }
 
-  .wrapper {
+  .mainWrapper {
     flex-direction: column;
     align-items: center;
   }
 }
 
 @media(max-width: 768px) {
-  .container {
+  .weatherContainer {
     width: 400px;
     height: 620px;
   }
