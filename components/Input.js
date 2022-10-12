@@ -13,6 +13,7 @@ const InputComponent = ({ setCity }) => {
         }}
       >
         <input
+          type='text'
           value={val}
           onChange={(e) => setVal(e.target.value)}
           placeholder="London"
