@@ -15,7 +15,7 @@ const InputComponent = ({ setCity }) => {
         <input
           type='text'
           enterKeyHint='go'
-          value={val == '' ? 'London' : val}
+          value={val}
           onChange={(e) => setVal(e.target.value)}
           placeholder='London'
         />

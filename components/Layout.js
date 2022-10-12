@@ -15,23 +15,28 @@ const Layout = () => {
 
   const setCity = (city) => {
     setError('');
-    fetch(`/api/weather?city=${city}`)
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        if (data.coord != undefined) {
-          fetch(`/api/onecall?lat=${data.coord.lat}&lon=${data.coord.lon}`)
-            .then((response) => {
-              return response.json();
-            })
-            .then((data) => {
-              setData(data);
-            });
-        } else {
-          setError('Wrong input, try another please.');
-        }
-      });
+    if (!city) {
+      setError('Fill the input please.');
+      return;
+    } else {
+      fetch(`/api/weather?city=${city}`)
+        .then((response) => {
+          return response.json();
+        })
+        .then((data) => {
+          if (data.coord != undefined) {
+            fetch(`/api/onecall?lat=${data.coord.lat}&lon=${data.coord.lon}`)
+              .then((response) => {
+                return response.json();
+              })
+              .then((data) => {
+                setData(data);
+              });
+          } else {
+            setError('Wrong input, try another please.');
+          }
+        });
+    }
   };
 
   useEffect(() => {
