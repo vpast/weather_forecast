@@ -24,17 +24,13 @@ const Layout = () => {
           return response.json();
         })
         .then((data) => {
-          if (data.coord != undefined) {
-            fetch(`/api/onecall?lat=${data.coord.lat}&lon=${data.coord.lon}`)
-              .then((response) => {
-                return response.json();
-              })
-              .then((data) => {
-                setData(data);
-              });
-          } else {
-            setError('Wrong input, try another please.');
-          }
+          fetch(`/api/onecall?lat=${data.coord.lat}&lon=${data.coord.lon}`)
+            .then((response) => {
+              return response.json();
+            })
+            .then((data) => {
+              setData(data);
+            });
         });
     }
   };
@@ -46,15 +42,13 @@ const Layout = () => {
           return response.json();
         })
         .then((data) => {
-          if (data.coord != undefined) {
-            fetch(`/api/onecall?lat=${data.coord.lat}&lon=${data.coord.lon}`)
-              .then((response) => {
-                return response.json();
-              })
-              .then((data) => {
-                setData(data);
-              });
-          }
+          fetch(`/api/onecall?lat=${data.coord.lat}&lon=${data.coord.lon}`)
+            .then((response) => {
+              return response.json();
+            })
+            .then((data) => {
+              setData(data);
+            });
         });
       return;
     }
