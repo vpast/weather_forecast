@@ -10,4 +10,4 @@ export default function handler(req, res) {
       // handle success
       res.json(response.data)
     })
-}
+  }

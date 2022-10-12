@@ -36,7 +36,6 @@ const Layout = () => {
         }
       });
   };
-  console.log(data);
 
   useEffect(() => {
     if (!data) {
