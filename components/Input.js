@@ -14,6 +14,7 @@ const InputComponent = ({ setCity }) => {
       >
         <input
           type='text'
+          enterkeyhint="go"
           value={val}
           onChange={(e) => setVal(e.target.value)}
           placeholder="London"
