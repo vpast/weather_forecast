@@ -1,11 +1,11 @@
-import { useState } from "react";
+import { useState } from 'react';
 
 const InputComponent = ({ setCity }) => {
-  const [val, setVal] = useState("");
+  const [val, setVal] = useState('');
 
   return (
-    <div className="inputFlex">
-      <p className="check">Your city</p>
+    <div className='inputFlex'>
+      <p className='check'>Your city</p>
       <form
         onSubmit={(e) => {
           e.preventDefault();
@@ -14,10 +14,10 @@ const InputComponent = ({ setCity }) => {
       >
         <input
           type='text'
-          enterkeyhint="go"
-          value={val}
+          enterKeyHint='go'
+          value={val == '' ? 'London' : val}
           onChange={(e) => setVal(e.target.value)}
-          placeholder="London"
+          placeholder='London'
         />
       </form>
     </div>
