@@ -24,7 +24,8 @@ const Layout = () => {
           return response.json();
         })
         .then((data) => {
-          fetch(`/api/onecall?lat=${data.coord.lat}&lon=${data.coord.lon}`)
+          // fetch(`/api/onecall?lat=${data.coord.lat}&lon=${data.coord.lon}`)
+          fetch(`api/hourly?lat=${data.coord.lat}&lon=${data.coord.lon}`)
             .then((response) => {
               return response.json();
             })
@@ -42,7 +43,8 @@ const Layout = () => {
           return response.json();
         })
         .then((data) => {
-          fetch(`/api/onecall?lat=${data.coord.lat}&lon=${data.coord.lon}`)
+          // fetch(`/api/onecall?lat=${data.coord.lat}&lon=${data.coord.lon}`)
+          fetch(`api/hourly?lat=${data.coord.lat}&lon=${data.coord.lon}`)
             .then((response) => {
               return response.json();
             })
@@ -83,9 +85,9 @@ const Layout = () => {
           <div className='inputWrapper'>
             <InputComponent setCity={setCity} />
             {!!error && <ErrorInput error={error} />}
-            {!!data && (
+            {/* {!!data && (
               <WeatherStat data={data} currentDateTime={currentDateTime} />
-            )}
+            )} */}
           </div>
           {!!data && (
             <div className='cardBlockFlex'>

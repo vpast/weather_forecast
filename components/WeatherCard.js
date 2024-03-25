@@ -39,8 +39,8 @@ const WeatherCard = ({ data, currentDate, activeDay, setActiveDay}) => {
   const days = [
     {
       itemTitle: "Today",
-      src: `http://openweathermap.org/img/wn/${data.current.weather[0].icon}@2x.png`,
-      humidity: data.current.humidity,
+      // src: `http://openweathermap.org/img/wn/${data.current.weather[0].icon}@2x.png`,
+      // humidity: data.current.humidity,
     }
   ];
 
@@ -48,8 +48,8 @@ const WeatherCard = ({ data, currentDate, activeDay, setActiveDay}) => {
     days.push(    
     {
       itemTitle: getFormattedDate(getNextDate(currentDate, i)),
-      src: `http://openweathermap.org/img/wn/${data.daily[i].weather[0].icon}@2x.png`,
-      humidity: data.daily[i].humidity,
+      // src: `http://openweathermap.org/img/wn/${data.daily[i].weather[0].icon}@2x.png`,
+      // humidity: data.daily[i].humidity,
     })
   }
   
