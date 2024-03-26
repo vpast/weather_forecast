@@ -10,25 +10,27 @@ const WeatherChart = ({ data, activeDay }) => {
 
     const temp = [];
 
-    // for (let i = 0; i <= 3; i++) {
-    //   temp.push(Math.round(data.daily[i].temp.day));
-    // }
+    for (let i = 0; i <= 4; i++) {
+      // temp.push(Math.round(data.daily[i].temp.day));
+      temp.push(Math.round(data.list[i].main.temp));
+    }
 
     const ctx = chartRef.current.getContext("2d");
     const myChart = new Chart(ctx, {
       type: "mixed",
       data: {
-        labels: ["1", "2", "3", "4"],
+        labels: ["1", "2", "3", "4", "5"],
         datasets: [
           {
             type: "bubble",
             label: "Day",
             data: [
-              // {
-              //   x: 1,
-              //   y: Math.round(data.daily[0].temp.day),
-              //   r: 5,
-              // },
+              {
+                x: 1,
+                // y: Math.round(data.daily[0].temp.day),
+                y: Math.round(data.list[0].main.temp),
+                r: 5,
+              },
             ],
             backgroundColor: "rgb(255, 99, 132)",
           },
@@ -58,9 +60,10 @@ const WeatherChart = ({ data, activeDay }) => {
     if (!myChart) return;
     const temp = [];
 
-    // for (let i = 0; i <= 3; i++) {
-    //   temp.push(Math.round(data.daily[i].temp.day));
-    // }
+    for (let i = 0; i <= 4; i++) {
+      // temp.push(Math.round(data.daily[i].temp.day));
+      temp.push(Math.round(data.list[i].main.temp));
+    }
     myChart.data.datasets[1].data = temp;
     myChart.update();
   }, [data]);
@@ -72,7 +75,7 @@ const WeatherChart = ({ data, activeDay }) => {
       {
         x: activeDay + 1,
         // y: Math.round(data.daily[activeDay].temp.day),
-        y: 0,
+        y: Math.round(data.list[activeDay].main.temp),
         r: 5,
       },
     ];

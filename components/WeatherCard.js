@@ -44,13 +44,14 @@ const WeatherCard = ({ data, currentDate, activeDay, setActiveDay}) => {
     }
   ];
 
-  for (let i = 1; i <= 3; i++) {
+  for (let i = 1; i <= 4; i++) {
     days.push(    
     {
       itemTitle: getFormattedDate(getNextDate(currentDate, i)),
-      // src: `http://openweathermap.org/img/wn/${data.daily[i].weather[0].icon}@2x.png`,
-      // humidity: data.daily[i].humidity,
+      src: `http://openweathermap.org/img/wn/${data.list[i].weather[0].icon}@2x.png`,
+      humidity: data.list[i].main.humidity,
     })
+    // console.log(data.list[i])
   }
   
   return (
