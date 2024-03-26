@@ -85,9 +85,9 @@ const Layout = () => {
           <div className='inputWrapper'>
             <InputComponent setCity={setCity} />
             {!!error && <ErrorInput error={error} />}
-            {/* {!!data && (
+            {!!data && (
               <WeatherStat data={data} currentDateTime={currentDateTime} />
-            )} */}
+            )}
           </div>
           {!!data && (
             <div className='cardBlockFlex'>
