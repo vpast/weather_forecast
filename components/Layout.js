@@ -8,6 +8,7 @@ import ErrorInput from './ErrorInput';
 
 const Layout = () => {
   const [data, setData] = useState(null);
+  const [currentTimezone, setCurrentTimezone] = useState(null);
   const [currentDateTime, setCurrentDateTime] = useState(null);
   const [currentDate, setCurrentDate] = useState(new Date());
   const [error, setError] = useState('');
@@ -24,6 +25,7 @@ const Layout = () => {
           return response.json();
         })
         .then((data) => {
+          setCurrentTimezone(data.timezone)
           // fetch(`/api/onecall?lat=${data.coord.lat}&lon=${data.coord.lon}`)
           fetch(`api/hourly?lat=${data.coord.lat}&lon=${data.coord.lon}`)
             .then((response) => {
@@ -55,7 +57,7 @@ const Layout = () => {
       return;
     }
     const today = new Date();
-    const cityOffset = data.timezone_offset / 60;
+    const cityOffset = currentTimezone / 60;
     today.setTime(
       today.getTime() + (today.getTimezoneOffset() + cityOffset) * 60000
     );

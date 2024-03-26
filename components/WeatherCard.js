@@ -39,8 +39,8 @@ const WeatherCard = ({ data, currentDate, activeDay, setActiveDay}) => {
   const days = [
     {
       itemTitle: "Today",
-      // src: `http://openweathermap.org/img/wn/${data.current.weather[0].icon}@2x.png`,
-      // humidity: data.current.humidity,
+      src: `http://openweathermap.org/img/wn/${data.list[0].weather[0].icon}@2x.png`,
+      humidity: data.list[0].main.humidity,
     }
   ];
 
