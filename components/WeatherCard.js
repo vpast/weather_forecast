@@ -22,7 +22,7 @@ const getNextDate = (date, step = 1) => {
   return nextDay;
 };
 
-const WeatherItem = ({ itemTitle, src, humidity, isActive, onClick, date}) => {
+const WeatherItem = ({ itemTitle, src, humidity, isActive, onClick}) => {
   return (
     <div className={`cardBorder ${isActive && 'cardBorderActive'}`} onClick={() => onClick()}>
       <p className="cardFonts">{itemTitle}</p>
@@ -31,7 +31,6 @@ const WeatherItem = ({ itemTitle, src, humidity, isActive, onClick, date}) => {
       </div>
       <p className="cardFonts">Humidity</p>
       <p className="cardFonts">{humidity} % {isActive}</p>
-      <div>{date}</div>
     </div>
   );
 };
@@ -44,7 +43,6 @@ const WeatherCard = ({ data, currentDate, activeDay, setActiveDay}) => {
       itemTitle: "Today",
       src: `http://openweathermap.org/img/wn/${data.list[0].weather[0].icon}@2x.png`,
       humidity: data.list[0].main.humidity,
-      date: data.list[0].dt_txt
     }
   ];
   
@@ -54,10 +52,8 @@ const WeatherCard = ({ data, currentDate, activeDay, setActiveDay}) => {
         itemTitle: getFormattedDate(getNextDate(currentDate, i)),
         src: `http://openweathermap.org/img/wn/${data.list[i].weather[0].icon}@2x.png`,
         humidity: data.list[i].main.humidity,
-        date: data.list[i].dt_txt
       })
     }
-    console.log(data.list[i])
   }
   
   return (
