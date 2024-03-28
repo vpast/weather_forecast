@@ -1,4 +1,4 @@
-import Chart, { BubbleController } from "chart.js/auto";
+import Chart from "chart.js/auto";
 import { useRef, useEffect, useState } from "react";
 
 const WeatherChart = ({ data, activeDay }) => {
@@ -10,15 +10,15 @@ const WeatherChart = ({ data, activeDay }) => {
 
     const temp = [];
 
-    for (let i = 0; i <= 3; i++) {
-      temp.push(Math.round(data.daily[i].temp.day));
+    for (let i = 0; i <= 4; i++) {
+      temp.push(Math.round(data.list[i].main.temp));
     }
 
     const ctx = chartRef.current.getContext("2d");
     const myChart = new Chart(ctx, {
       type: "mixed",
       data: {
-        labels: ["1", "2", "3", "4"],
+        labels: ["1", "2", "3", "4", "5"],
         datasets: [
           {
             type: "bubble",
@@ -26,7 +26,7 @@ const WeatherChart = ({ data, activeDay }) => {
             data: [
               {
                 x: 1,
-                y: Math.round(data.daily[0].temp.day),
+                y: Math.round(data.list[0].main.temp),
                 r: 5,
               },
             ],
@@ -58,8 +58,8 @@ const WeatherChart = ({ data, activeDay }) => {
     if (!myChart) return;
     const temp = [];
 
-    for (let i = 0; i <= 3; i++) {
-      temp.push(Math.round(data.daily[i].temp.day));
+    for (let i = 0; i <= 4; i++) {
+      temp.push(Math.round(data.list[i].main.temp));
     }
     myChart.data.datasets[1].data = temp;
     myChart.update();
@@ -71,7 +71,7 @@ const WeatherChart = ({ data, activeDay }) => {
     myChart.data.datasets[0].data = [
       {
         x: activeDay + 1,
-        y: Math.round(data.daily[activeDay].temp.day),
+        y: Math.round(data.list[activeDay].main.temp),
         r: 5,
       },
     ];
