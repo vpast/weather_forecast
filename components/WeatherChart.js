@@ -1,4 +1,4 @@
-import Chart, { BubbleController } from "chart.js/auto";
+import Chart from "chart.js/auto";
 import { useRef, useEffect, useState } from "react";
 
 const WeatherChart = ({ data, activeDay }) => {
@@ -11,7 +11,6 @@ const WeatherChart = ({ data, activeDay }) => {
     const temp = [];
 
     for (let i = 0; i <= 4; i++) {
-      // temp.push(Math.round(data.daily[i].temp.day));
       temp.push(Math.round(data.list[i].main.temp));
     }
 
@@ -27,7 +26,6 @@ const WeatherChart = ({ data, activeDay }) => {
             data: [
               {
                 x: 1,
-                // y: Math.round(data.daily[0].temp.day),
                 y: Math.round(data.list[0].main.temp),
                 r: 5,
               },
@@ -61,7 +59,6 @@ const WeatherChart = ({ data, activeDay }) => {
     const temp = [];
 
     for (let i = 0; i <= 4; i++) {
-      // temp.push(Math.round(data.daily[i].temp.day));
       temp.push(Math.round(data.list[i].main.temp));
     }
     myChart.data.datasets[1].data = temp;
@@ -74,7 +71,6 @@ const WeatherChart = ({ data, activeDay }) => {
     myChart.data.datasets[0].data = [
       {
         x: activeDay + 1,
-        // y: Math.round(data.daily[activeDay].temp.day),
         y: Math.round(data.list[activeDay].main.temp),
         r: 5,
       },
