@@ -1,8 +1,8 @@
 @import '../node_modules/bootstrap/scss/bootstrap.scss';
-@import './input.scss';
-@import './layout.scss';
-@import './weather.scss';
-@import './card.scss';
+@import './_input.scss';
+@import './_layout.scss';
+@import './_weather.scss';
+@import './_card.scss';
 
 body {
   height: 100%;
