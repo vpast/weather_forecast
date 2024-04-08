@@ -18,5 +18,5 @@ jobs:
       - name: Push to dokku
         uses: dokku/github-action@master
         with:
-          git_remote_url: 'ssh://dokku@vpast.dev:22/weather'
+          git_remote_url: 'ssh://dokku@164.92.208.41:22/weather'
           ssh_private_key: ${{ secrets.SSH_KEY }}
