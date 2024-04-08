@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "engines": {
-    "node": "16.17.1",
-    "npm": "8.15.0"
+    "node": "20.12.1",
+    "npm": "10.5.0"
   },
   "scripts": {
     "build": "next build",
@@ -16,15 +16,15 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "axios": "^1.6.0",
-    "bootstrap": "^5.0.0-beta3",
-    "chart.js": "^3.2.0",
-    "dotenv": "^16.0.3",
-    "next": "^13.5.1",
-    "react": "^17.0.2",
-    "react-bootstrap-icons": "^1.4.0",
-    "react-dom": "^17.0.2",
+    "axios": "^1.6.8",
+    "bootstrap": "^5.3.3",
+    "chart.js": "^4.4.2",
+    "dotenv": "^16.4.5",
+    "next": "^14.1.4",
+    "react": "^18.2.0",
+    "react-bootstrap-icons": "^1.11.3",
+    "react-dom": "^18.2.0",
     "saas": "^1.0.0",
-    "sass": "^1.32.12"
+    "sass": "^1.74.1"
   }
 }
