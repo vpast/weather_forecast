@@ -1,5 +1,5 @@
 const WeatherStat = ({ data, currentDateTime }) => {
-  console.log(data)
+  // console.log(data)
   const roundvalue = Math.round(data.list[0].main.temp);
   return (
     <>

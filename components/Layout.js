@@ -25,7 +25,7 @@ const Layout = () => {
           return response.json();
         })
         .then((data) => {
-          setCurrentTimezone(data.timezone)
+          setCurrentTimezone(data.timezone);
           fetch(`api/hourly?lat=${data.coord.lat}&lon=${data.coord.lon}`)
             .then((response) => {
               return response.json();
@@ -38,36 +38,39 @@ const Layout = () => {
   };
 
   useEffect(() => {
-    if (!data) {
-      fetch(`/api/weather?city=london`)
-        .then((response) => {
-          return response.json();
-        })
-        .then((data) => {
-          fetch(`api/hourly?lat=${data.coord.lat}&lon=${data.coord.lon}`)
-            .then((response) => {
-              return response.json();
-            })
-            .then((data) => {
-              setData(data);
-            });
-        });
-      return;
+    fetch(`/api/weather?city=london`)
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        setCurrentTimezone(data.timezone)
+        return fetch(`api/hourly?lat=${data.coord.lat}&lon=${data.coord.lon}`)
+          .then((response) => {
+            return response.json();
+          })
+          .then((data) => {
+            setData(data);
+          });
+      });
+  }, []);
+
+  useEffect(() => {
+    if (data && currentTimezone !== null) {
+      const today = new Date();
+      const cityOffset = currentTimezone / 60;
+      today.setTime(
+        today.getTime() + (today.getTimezoneOffset() + cityOffset) * 60000
+      );
+      const currentDateTimeNew =
+        today.getHours() +
+        ':' +
+        (today.getMinutes() + '').padStart(2, '0') +
+        ' ' +
+        today.toDateString();
+      setCurrentDateTime(currentDateTimeNew);
+      setCurrentDate(today);
     }
-    const today = new Date();
-    const cityOffset = currentTimezone / 60;
-    today.setTime(
-      today.getTime() + (today.getTimezoneOffset() + cityOffset) * 60000
-    );
-    const currentDateTimeNew =
-      today.getHours() +
-      ':' +
-      (today.getMinutes() + '').padStart(2, '0') +
-      ' ' +
-      today.toDateString();
-    setCurrentDateTime(currentDateTimeNew);
-    setCurrentDate(today);
-  }, [data]);
+  }, [data, currentTimezone]);
 
   return (
     <div>
