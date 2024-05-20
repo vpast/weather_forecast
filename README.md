@@ -8,4 +8,5 @@ To run this program, install node modules use this in command line `npm i`
 After that, type `npm run dev` to run program
 
 Type your **city** in input field and hit "Enter" to see results
+
 ![Alt Text](https://i.imgur.com/j1NdhA9.gif)
