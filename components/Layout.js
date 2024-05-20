@@ -5,6 +5,7 @@ import WeatherStat from './WeatherStat';
 import WeatherChart from './WeatherChart';
 import WeatherCard from './WeatherCard';
 import ErrorInput from './ErrorInput';
+import Loader from './Loader';
 
 const Layout = () => {
   const [data, setData] = useState(null);
@@ -13,11 +14,14 @@ const Layout = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [error, setError] = useState('');
   const [activeDay, setActiveDay] = useState(0);
+  const [showLoader, setShowLoader] = useState(false);
 
   const setCity = (city) => {
     setError('');
+    setShowLoader(true);
     if (!city) {
       setError('Fill the input please.');
+      setShowLoader(false);
       return;
     } else {
       fetch(`/api/weather?city=${city}`)
@@ -32,24 +36,27 @@ const Layout = () => {
             })
             .then((data) => {
               setData(data);
+              setShowLoader(false);
             });
         });
     }
   };
 
   useEffect(() => {
+    setShowLoader(true);
     fetch(`/api/weather?city=london`)
       .then((response) => {
         return response.json();
       })
       .then((data) => {
-        setCurrentTimezone(data.timezone)
+        setCurrentTimezone(data.timezone);
         return fetch(`api/hourly?lat=${data.coord.lat}&lon=${data.coord.lon}`)
           .then((response) => {
             return response.json();
           })
           .then((data) => {
             setData(data);
+            setShowLoader(false);
           });
       });
   }, []);
@@ -86,7 +93,10 @@ const Layout = () => {
       <main>
         <div className='mainWrapper'>
           <div className='inputWrapper'>
-            <InputComponent setCity={setCity} />
+            <div className='flexWrapper'>
+              <InputComponent setCity={setCity} />
+                {showLoader && <Loader />}
+            </div>
             {!!error && <ErrorInput error={error} />}
             {!!data && (
               <WeatherStat data={data} currentDateTime={currentDateTime} />
