@@ -37,7 +37,8 @@ const Layout = () => {
           .then((data) => {
             setData(data);
             setShowLoader(false);
-          });
+          })
+          .catch((err) => console.log(err));
       });
   };
 
@@ -56,7 +57,8 @@ const Layout = () => {
           .then((data) => {
             setData(data);
             setShowLoader(false);
-          });
+          })
+          .catch((err) => console.log(err));
       });
   }, []);
 
