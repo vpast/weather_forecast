@@ -23,23 +23,22 @@ const Layout = () => {
       setError('Fill the input please.');
       setShowLoader(false);
       return;
-    } else {
-      fetch(`/api/weather?city=${city}`)
-        .then((response) => {
-          return response.json();
-        })
-        .then((data) => {
-          setCurrentTimezone(data.timezone);
-          fetch(`api/hourly?lat=${data.coord.lat}&lon=${data.coord.lon}`)
-            .then((response) => {
-              return response.json();
-            })
-            .then((data) => {
-              setData(data);
-              setShowLoader(false);
-            });
-        });
     }
+    fetch(`/api/weather?city=${city}`)
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        setCurrentTimezone(data.timezone);
+        fetch(`api/hourly?lat=${data.coord.lat}&lon=${data.coord.lon}`)
+          .then((response) => {
+            return response.json();
+          })
+          .then((data) => {
+            setData(data);
+            setShowLoader(false);
+          });
+      });
   };
 
   useEffect(() => {
@@ -95,7 +94,7 @@ const Layout = () => {
           <div className='inputWrapper'>
             <div className='flexWrapper'>
               <InputComponent setCity={setCity} />
-                {showLoader && <Loader />}
+              {showLoader && <Loader />}
             </div>
             {!!error && <ErrorInput error={error} />}
             {!!data && (
