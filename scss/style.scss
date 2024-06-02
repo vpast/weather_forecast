@@ -43,6 +43,11 @@ body {
 
 .mainWrapper {
   display: flex;
+  justify-content: space-around;
+}
+
+.inputBlockFlex {
+  display: flex;
 }
 
 .weatherError {
@@ -50,13 +55,15 @@ body {
   padding-top: 20px;
 }
 
-.flexWrapper {
+.inputCompFlex {
   display: flex;
+  flex-direction: column;
 }
 
 .loaderPos {
   padding-top: 70px;
-  padding-left: 10px;
+  padding-left: 360px;
+  position: absolute;
 }
 
 

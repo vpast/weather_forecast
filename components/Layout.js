@@ -94,16 +94,18 @@ const Layout = () => {
       </Head>
       <main>
         <div className='mainWrapper'>
-          <div className='inputWrapper'>
-            <div className='flexWrapper'>
-              <InputComponent
-                setCity={setCity}
-                value={inputValue}
-                setValue={setInputValue}
-              />
+          <div className='dataBlockWrapper'>
+            <div className='inputBlockFlex'>
+              <div className='inputCompFlex'>
+                <InputComponent
+                  setCity={setCity}
+                  value={inputValue}
+                  setValue={setInputValue}
+                  error={error}
+                />
+              </div>
               {showLoader && <Loader />}
             </div>
-            {!!error && <ErrorInput error={error} />}
             {!!data && (
               <WeatherStat
                 data={data}
