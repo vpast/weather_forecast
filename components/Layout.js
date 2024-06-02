@@ -12,6 +12,7 @@ const Layout = () => {
   const [error, setError] = useState('');
   const [activeDay, setActiveDay] = useState(0);
   const [showLoader, setShowLoader] = useState(false);
+  const [inputValue, setInputValue] = useState('');
 
   const dateRef = useRef({
     currentDate: new Date(),
@@ -20,19 +21,19 @@ const Layout = () => {
 
   const timezoneUpdate = (timezone) => {
     const today = new Date();
-        const cityOffset = timezone / 60;
-        today.setTime(
-          today.getTime() + (today.getTimezoneOffset() + cityOffset) * 60000
-        );
-        const currentDateTimeNew =
-          today.getHours() +
-          ':' +
-          (today.getMinutes() + '').padStart(2, '0') +
-          ' ' +
-          today.toDateString();
-          dateRef.current.currentDate = today;
-          dateRef.current.currentDateTime = currentDateTimeNew
-  }
+    const cityOffset = timezone / 60;
+    today.setTime(
+      today.getTime() + (today.getTimezoneOffset() + cityOffset) * 60000
+    );
+    const currentDateTimeNew =
+      today.getHours() +
+      ':' +
+      (today.getMinutes() + '').padStart(2, '0') +
+      ' ' +
+      today.toDateString();
+    dateRef.current.currentDate = today;
+    dateRef.current.currentDateTime = currentDateTimeNew;
+  };
 
   const setCity = (city) => {
     setError('');
@@ -47,7 +48,7 @@ const Layout = () => {
         return response.json();
       })
       .then((data) => {
-        timezoneUpdate(data.timezone)
+        timezoneUpdate(data.timezone);
         fetch(`api/hourly?lat=${data.coord.lat}&lon=${data.coord.lon}`)
           .then((response) => {
             return response.json();
@@ -67,7 +68,7 @@ const Layout = () => {
         return response.json();
       })
       .then((data) => {
-        timezoneUpdate(data.timezone)     
+        timezoneUpdate(data.timezone);
         return fetch(`api/hourly?lat=${data.coord.lat}&lon=${data.coord.lon}`)
           .then((response) => {
             return response.json();
@@ -95,12 +96,19 @@ const Layout = () => {
         <div className='mainWrapper'>
           <div className='inputWrapper'>
             <div className='flexWrapper'>
-              <InputComponent setCity={setCity} />
+              <InputComponent
+                setCity={setCity}
+                value={inputValue}
+                setValue={setInputValue}
+              />
               {showLoader && <Loader />}
             </div>
             {!!error && <ErrorInput error={error} />}
             {!!data && (
-              <WeatherStat data={data} currentDateTime={dateRef.current.currentDateTime} />
+              <WeatherStat
+                data={data}
+                currentDateTime={dateRef.current.currentDateTime}
+              />
             )}
           </div>
           {!!data && (

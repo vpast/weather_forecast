@@ -1,22 +1,18 @@
-import { useState } from 'react';
-
-const InputComponent = ({ setCity }) => {
-  const [val, setVal] = useState('');
-
+const InputComponent = ({ setCity, value, setValue }) => {
   return (
     <div className='inputFlex'>
       <p className='check'>Your city</p>
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          setCity(val);
+          setCity(value);
         }}
       >
         <input
           type='text'
           enterKeyHint='go'
-          value={val}
-          onChange={(e) => setVal(e.target.value)}
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
           placeholder='London'
         />
       </form>
