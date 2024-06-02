@@ -8,7 +8,7 @@ import ErrorInput from './ErrorInput';
 import Loader from './Loader';
 
 const Layout = () => {
-  const [data, setData] = useState(null);
+  const [apiData, setApiData] = useState(null);
   const [error, setError] = useState('');
   const [activeDay, setActiveDay] = useState(0);
   const [showLoader, setShowLoader] = useState(false);
@@ -54,7 +54,7 @@ const Layout = () => {
             return response.json();
           })
           .then((data) => {
-            setData(data);
+            setApiData(data);
             setShowLoader(false);
           })
           .catch((err) => console.log(err));
@@ -74,7 +74,7 @@ const Layout = () => {
             return response.json();
           })
           .then((data) => {
-            setData(data);
+            setApiData(data);
             setShowLoader(false);
           })
           .catch((err) => console.log(err));
@@ -106,21 +106,21 @@ const Layout = () => {
               </div>
               {showLoader && <Loader />}
             </div>
-            {!!data && (
+            {!!apiData && (
               <WeatherStat
-                data={data}
+                data={apiData}
                 currentDateTime={dateRef.current.currentDateTime}
               />
             )}
           </div>
-          {!!data && (
+          {!!apiData && (
             <div className='cardBlockFlex'>
               <div className='chartWrapper'>
-                <WeatherChart data={data} activeDay={activeDay} />
+                <WeatherChart data={apiData} activeDay={activeDay} />
               </div>
               <div className='cards'>
                 <WeatherCard
-                  data={data}
+                  data={apiData}
                   currentDate={dateRef.current.currentDate}
                   activeDay={activeDay}
                   setActiveDay={setActiveDay}
