@@ -1,12 +1,20 @@
 const WeatherStat = ({ data, currentDateTime }) => {
-  // console.log(data)
-  const roundvalue = Math.round(data.list[0].main.temp);
+  const [firstDataValue] = data.list || [];
+  const { main, weather, wind } = firstDataValue;
+  const [firstWeatherValue] = weather || [];
+  const { temp, humidity } = main || {};
+  const { icon, description } = firstWeatherValue;
+  
+  if (!firstDataValue) return null;
+  if (!firstWeatherValue) return null;
+  
+  const roundvalue = Math.round(temp);
   return (
     <>
       <p className="weatherDate">{currentDateTime}</p>
       <div className="weatherStat">
         <img
-          src={`http://openweathermap.org/img/wn/${data.list[0].weather[0].icon}@4x.png`}
+          src={`http://openweathermap.org/img/wn/${icon}@4x.png`}
           className="weatherImg"
         ></img>
         <div className="weatherStatFlex">
@@ -14,15 +22,15 @@ const WeatherStat = ({ data, currentDateTime }) => {
           <p className="weatherCel">&deg;C</p>
         </div>
       </div>
-      <p className="weatherDescription">{data.list[0].weather[0].description}</p>
+      <p className="weatherDescription">{description}</p>
       <div className="weatherHw">
         <div className="weatherHwStat">
           <p className="weatherHwTitleFont">Humidity</p>
-          <p className="weatherHwStatFont">{data.list[0].main.humidity} %</p>
+          <p className="weatherHwStatFont">{humidity} %</p>
         </div>
         <div className="weatherHwStat">
           <p className="weatherHwTitleFont">Wind Speed</p>
-          <p className="weatherHwStatFont">{data.list[0].wind.speed} m/s</p>
+          <p className="weatherHwStatFont">{wind.speed} m/s</p>
         </div>
       </div>
     </>
