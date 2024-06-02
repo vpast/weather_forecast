@@ -8,7 +8,7 @@ const WeatherStat = ({ data, currentDateTime }) => {
   if (!firstDataValue) return null;
   if (!firstWeatherValue) return null;
   
-  const roundvalue = Math.round(temp);
+  const roundValue = Math.round(temp);
   return (
     <>
       <p className="weatherDate">{currentDateTime}</p>
@@ -18,7 +18,7 @@ const WeatherStat = ({ data, currentDateTime }) => {
           className="weatherImg"
         ></img>
         <div className="weatherStatFlex">
-          <p className="weatherTemp">{roundvalue}</p>
+          <p className="weatherTemp">{roundValue}</p>
           <p className="weatherCel">&deg;C</p>
         </div>
       </div>
