@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Head from 'next/head';
 import InputComponent from './Input';
 import WeatherStat from './WeatherStat';
@@ -9,12 +9,30 @@ import Loader from './Loader';
 
 const Layout = () => {
   const [data, setData] = useState(null);
-  const [currentTimezone, setCurrentTimezone] = useState(null);
-  const [currentDateTime, setCurrentDateTime] = useState(null);
-  const [currentDate, setCurrentDate] = useState(new Date());
   const [error, setError] = useState('');
   const [activeDay, setActiveDay] = useState(0);
   const [showLoader, setShowLoader] = useState(false);
+
+  const dateRef = useRef({
+    currentDate: new Date(),
+    currentDateTime: null,
+  });
+
+  const timezoneUpdate = (timezone) => {
+    const today = new Date();
+        const cityOffset = timezone / 60;
+        today.setTime(
+          today.getTime() + (today.getTimezoneOffset() + cityOffset) * 60000
+        );
+        const currentDateTimeNew =
+          today.getHours() +
+          ':' +
+          (today.getMinutes() + '').padStart(2, '0') +
+          ' ' +
+          today.toDateString();
+          dateRef.current.currentDate = today;
+          dateRef.current.currentDateTime = currentDateTimeNew
+  }
 
   const setCity = (city) => {
     setError('');
@@ -29,7 +47,7 @@ const Layout = () => {
         return response.json();
       })
       .then((data) => {
-        setCurrentTimezone(data.timezone);
+        timezoneUpdate(data.timezone)
         fetch(`api/hourly?lat=${data.coord.lat}&lon=${data.coord.lon}`)
           .then((response) => {
             return response.json();
@@ -49,7 +67,7 @@ const Layout = () => {
         return response.json();
       })
       .then((data) => {
-        setCurrentTimezone(data.timezone);
+        timezoneUpdate(data.timezone)     
         return fetch(`api/hourly?lat=${data.coord.lat}&lon=${data.coord.lon}`)
           .then((response) => {
             return response.json();
@@ -61,24 +79,6 @@ const Layout = () => {
           .catch((err) => console.log(err));
       });
   }, []);
-
-  useEffect(() => {
-    if (data && currentTimezone !== null) {
-      const today = new Date();
-      const cityOffset = currentTimezone / 60;
-      today.setTime(
-        today.getTime() + (today.getTimezoneOffset() + cityOffset) * 60000
-      );
-      const currentDateTimeNew =
-        today.getHours() +
-        ':' +
-        (today.getMinutes() + '').padStart(2, '0') +
-        ' ' +
-        today.toDateString();
-      setCurrentDateTime(currentDateTimeNew);
-      setCurrentDate(today);
-    }
-  }, [data, currentTimezone]);
 
   return (
     <div>
@@ -100,7 +100,7 @@ const Layout = () => {
             </div>
             {!!error && <ErrorInput error={error} />}
             {!!data && (
-              <WeatherStat data={data} currentDateTime={currentDateTime} />
+              <WeatherStat data={data} currentDateTime={dateRef.current.currentDateTime} />
             )}
           </div>
           {!!data && (
@@ -111,7 +111,7 @@ const Layout = () => {
               <div className='cards'>
                 <WeatherCard
                   data={data}
-                  currentDate={currentDate}
+                  currentDate={dateRef.current.currentDate}
                   activeDay={activeDay}
                   setActiveDay={setActiveDay}
                 />
