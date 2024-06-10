@@ -1,44 +1,5 @@
-const months = [
-  'Jan',
-  'Feb',
-  'Mar',
-  'Apr',
-  'May',
-  'Jun',
-  'Jul',
-  'Aug',
-  'Sep',
-  'Oct',
-  'Nov',
-  'Dec',
-];
-const getFormattedDate = (date) => {
-  return `${date.getDate()} ${months[date.getMonth()]}`;
-};
-
-const getNextDate = (date, step) => {
-  const nextDay = new Date(date);
-  nextDay.setDate(date.getDate() + step);
-  return nextDay;
-};
-
-const WeatherItem = ({ itemTitle, src, humidity, isActive, onClick }) => {
-  return (
-    <div
-      className={`cardBorder ${isActive && 'cardBorderActive'}`}
-      onClick={() => onClick()}
-    >
-      <p className='cardFonts'>{itemTitle}</p>
-      <div className='cardImg'>
-        <img src={src} className='img' />
-      </div>
-      <p className='cardFonts'>Humidity</p>
-      <p className='cardFonts'>
-        {humidity} % {isActive}
-      </p>
-    </div>
-  );
-};
+import { getFormattedDate, getNextDate } from '../utils/utils'
+import WeatherItem from './WeatherItem'
 
 const WeatherCard = ({ data, currentDate, activeDay, setActiveDay }) => {
   const step = 8;
