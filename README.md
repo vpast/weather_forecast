@@ -3,10 +3,17 @@ The user can see a forecast for today and the next three days for the temperatur
 
 ## How to run and use
 
-To run this program, install node modules use this in command line `npm i`
+To run this program, install node modules by running the following in the command line:
+```bash
+npm i
+```
 
-After that, type `npm run dev` to run program
+After that, type the following to run the program:
 
-Type your **city** in input field and hit "Enter" to see results
+```bash
+npm run dev
+```
+
+Type your **city** in the input field and hit "Enter" to see results.
 
 ![Alt Text](https://i.imgur.com/j1NdhA9.gif)
